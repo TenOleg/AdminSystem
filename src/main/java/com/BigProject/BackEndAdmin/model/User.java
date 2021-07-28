@@ -1,6 +1,7 @@
 package com.BigProject.BackEndAdmin.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
 @Entity
 @Table(name = "user")
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class User extends BaseEntity {
 
     @Column(name = "username")

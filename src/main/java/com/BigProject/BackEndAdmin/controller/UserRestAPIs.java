@@ -33,15 +33,10 @@ public class UserRestAPIs {
     }
 
     @GetMapping("users")
-    public ResponseEntity<Map<Object, Object>> getAllUsers(@RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "5") int pageSize) {
+    public ResponseEntity<Map<Object, Object>> getAllUsers(@RequestParam String keyword, @RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "5") int pageSize) {
         try {
             Map<Object, Object> response = new HashMap<>();
-            Page<User> users;
-            if (keyword.isEmpty()) {
-                users = userService.getAll(pageNo - 1, pageSize);
-            } else {
-                users = userService.findUsersByUsername(keyword, pageNo - 1, pageSize);
-            }
+            Page<User> users = userService.getAll(keyword, pageNo - 1, pageSize);
 
             if (users.getTotalElements() == 0) {
                 response.put("message", "No any users found");

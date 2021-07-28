@@ -12,5 +12,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findByUsername(String username);
 
     @Query(value = "select * from user u where CONCAT (u.username, u.first_name, u.last_name, u.email) like %?1%", nativeQuery = true)
-    Page<User> findUserByUsername(String keyword, Pageable pageable);
+    Page<User> findAll(String keyword, Pageable pageable);
+
 }

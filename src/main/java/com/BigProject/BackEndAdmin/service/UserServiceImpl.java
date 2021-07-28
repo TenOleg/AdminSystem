@@ -22,9 +22,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Page<User> getAll(int pageNo, int pageSize) {
+    public Page<User> getAll(String keyword, int pageNo, int pageSize) {
         Pageable paging = PageRequest.of(pageNo, pageSize);
-        Page<User> result = userRepository.findAll(paging);
+        Page<User> result = userRepository.findAll(keyword, paging);
         log.info("IN getAll - {} users found", result.getTotalElements());
         return result;
     }
@@ -51,13 +51,5 @@ public class UserServiceImpl implements UserService {
     public void changedUserStatus(User user) {
         userRepository.save(user);
         log.info("IN changeUserStatus");
-    }
-
-    @Override
-    public Page<User> findUsersByUsername(String keyword, int pageNo, int pageSize) {
-        Pageable paging = PageRequest.of(pageNo, pageSize);
-        Page<User> result = userRepository.findUserByUsername(keyword, paging);
-        log.info("IN findUsersByUsername");
-        return result;
     }
 }
