@@ -1,7 +1,7 @@
 package com.BigProject.BackEndAdmin.controller;
 
 import com.BigProject.BackEndAdmin.exception.UserNotFoundException;
-import com.BigProject.BackEndAdmin.messages.response.AdminUserDto;
+import com.BigProject.BackEndAdmin.messages.response.UserDto;
 import com.BigProject.BackEndAdmin.model.Status;
 import com.BigProject.BackEndAdmin.model.User;
 import com.BigProject.BackEndAdmin.repository.UserRepository;
@@ -22,12 +22,12 @@ import java.util.Map;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/")
-public class UserRestAPIs {
+public class UserRestAPI {
     private final UserService userService;
     private final UserRepository userRepository;
 
     @Autowired
-    public UserRestAPIs(UserService userService, UserRepository userRepository) {
+    public UserRestAPI(UserService userService, UserRepository userRepository) {
         this.userService = userService;
         this.userRepository = userRepository;
     }
@@ -44,9 +44,9 @@ public class UserRestAPIs {
                 return ResponseEntity.ok(response);
             }
 
-            List<AdminUserDto> userListDto = new ArrayList<>();
+            List<UserDto> userListDto = new ArrayList<>();
             users.forEach(u -> {
-                userListDto.add(AdminUserDto.fromUser(u));
+                userListDto.add(UserDto.fromUser(u));
             });
 
             response.put("data", userListDto);
@@ -66,7 +66,7 @@ public class UserRestAPIs {
         User user = userService.findById(id);
 
         if (user != null) {
-            AdminUserDto result = AdminUserDto.fromUser(user);
+            UserDto result = UserDto.fromUser(user);
 
             response.put("data", result);
             response.put("resultCode", 0);
@@ -86,7 +86,7 @@ public class UserRestAPIs {
         user.setStatus(status);
         userService.changedUserStatus(user);
 
-        response.put("data", AdminUserDto.fromUser(user));
+        response.put("data", UserDto.fromUser(user));
         response.put("resultCode", 0);
 
         return new ResponseEntity<>(response, HttpStatus.OK);

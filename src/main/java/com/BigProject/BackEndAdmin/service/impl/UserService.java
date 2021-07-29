@@ -7,8 +7,6 @@ public interface UserService {
 
     Page<User> getAll(String keyword, int pageNo, int pageSize);
 
-    User findByUsername(String username);
-
     User findById(Long id);
 
     void changedUserStatus(User user);

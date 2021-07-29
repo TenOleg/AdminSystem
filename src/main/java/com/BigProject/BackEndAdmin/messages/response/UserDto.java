@@ -5,12 +5,11 @@ import com.BigProject.BackEndAdmin.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AdminUserDto {
+public class UserDto {
     private Long id;
     private String username;
     private String firstName;
@@ -38,18 +37,18 @@ public class AdminUserDto {
         return user;
     }
 
-    public static AdminUserDto fromUser(User user) {
-        AdminUserDto adminUserDto = new AdminUserDto();
-        adminUserDto.setId(user.getId());
-        adminUserDto.setUsername(user.getUsername());
-        adminUserDto.setFirstName(user.getFirstName());
-        adminUserDto.setLastName(user.getLastName());
-        adminUserDto.setAge(user.getAge());
-        adminUserDto.setGender(user.getGender());
-        adminUserDto.setEmail(user.getEmail());
-        adminUserDto.setStatus(Status.valueOf(user.getStatus().name()));
-        adminUserDto.setCreated(user.getCreated());
-        adminUserDto.setUpdated(user.getUpdated());
-        return adminUserDto;
+    public static UserDto fromUser(User user) {
+        UserDto userDto = new UserDto();
+        userDto.setId(user.getId());
+        userDto.setUsername(user.getUsername());
+        userDto.setFirstName(user.getFirstName());
+        userDto.setLastName(user.getLastName());
+        userDto.setAge(user.getAge());
+        userDto.setGender(user.getGender());
+        userDto.setEmail(user.getEmail());
+        userDto.setStatus(Status.valueOf(user.getStatus().name()));
+        userDto.setCreated(user.getCreated());
+        userDto.setUpdated(user.getUpdated());
+        return userDto;
     }
 }

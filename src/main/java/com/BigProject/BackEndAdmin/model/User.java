@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 @Table(name = "user")
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 public class User extends BaseEntity {
 
     @Column(name = "username")

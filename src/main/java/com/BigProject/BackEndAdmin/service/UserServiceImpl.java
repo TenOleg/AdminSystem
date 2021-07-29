@@ -30,11 +30,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByUsername(String username) {
-        return null;
-    }
-
-    @Override
     public User findById(Long id) {
         User result = userRepository.findById(id).orElse(null);
 
